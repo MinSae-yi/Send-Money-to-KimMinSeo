@@ -47,71 +47,14 @@
   button.copy-btn:hover {
     background-color: #45a049;
   }
-  .banks-panel {
+  .button-container {
     display: flex;
-    gap: 1rem;
-    flex-wrap: nowrap;
+    flex-direction: row;  /* 원래대로 가로 배열 유지 */
+    gap: 12px;
+    margin-top: 20px;
+    width: 320px;
     justify-content: center;
-    max-width: 400px;
   }
-  .bank-btn {
-    background-color: #0077cc;
-    color: white;
-    border: none;
-    padding: 1rem 1.5rem;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: 600;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-    transition: background-color 0.3s;
+  .button {
     display: flex;
-    align-items: center;
-    gap: 8px;
-    min-width: 160px;
-  }
-  .bank-btn:hover {
-    background-color: #005fa3;
-  }
-  .bank-icon {
-    width: 24px;
-    height: 24px;
-  }
-</style>
-</head>
-<body>
-
-  <section class="account-section">
-    <div class="account-number" id="accountNumber">94900200430797</div>
-    <div class="account-name">김민서 (국민은행)</div>
-    <button class="copy-btn" onclick="copyAccount()">계좌번호 복사</button>
-  </section>
-
-  <section class="banks-panel">
-    <button class="bank-btn" onclick="openBank('https://www.tossbank.com')">
-      <img class="bank-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAASCAYAAAC3GmgdAAAACXBIWXMAAAsTAAALEwEAmpwYAAABX0lEQVR4nM3UPWtCURDH8d81NkQFhkx6ggqISkx9h6GxvFUkf4hZ4Qlk1QlkOp0F+DjPtwKiQshF5HzT/OP/e7r9F2x1PaZ13eN8mUNLoVkQFo04y4lMQhwgoVkQFo04y4hMQhwhIrTP6bhnwA7G39ChH4vI2gLpLtyVMEBOQgsYMvlMb4L3V4Ewv96TpO/NMn4jSi6n0ne+RZF0OpMl57jk7eq5RJk+nKn92nCFv5BLZbWimOUUzTqcC5uC0gU7YNqjZcwrc6tUOBRpKcdxtCD3vTFFuMVO5aQhYrAyXOT9ClRgEBJRG9C6vlwrErl5ubZ7JBRzGDvdbqp7rCxpU6wEdDgeUWiUes+TQqXY6mjUnXLsWA0WKgkqzH3+n0TBSLnFGWcZ2bW1/Iu0AnvOS4Z3AF/ERyvA5wpE+qN7u8ChG/QkOmmaYxTnS+0AAAAAAAAAID3O7yCcTyq0lH4AAAAASUVORK5CYII=" alt="토스뱅크 로고" />
-      토스뱅크
-    </button>
-    <button class="bank-btn" onclick="openBank('https://www.kakaobank.com')">
-      <img class="bank-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAASCAYAAAC3GmgdAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAv0lEQVR4nM3UQQrCMBBF4Xv8kykT+gwtgIphVhFmhJsHwdoNBYXLBH4A6c4pfhsT9PBno3exEHqYDE37J5qaJ3ApuTf1vIDPMjAEm+6gS8QgiFdi3ZwAEqN2Eo5dTpJvwAOCyR4dIQhcdgSTecNIFGZ+vBZBv0zTAQr5rIwwS7oK9b2CugQPtC/xACvQvqObHmgDE4ZRRb+ZcgYH7Oc7xqkeOYB9DGH+N6LPLN+QoK2Ro/QquQX9Y7rRQn+FaGdO7FdwEj43Lu3rWqHwAAAABJRU5ErkJggg==" alt="카카오뱅크 로고" />
-      카카오뱅크
-    </button>
-  </section>
-
-<script>
-  function copyAccount() {
-    const accountText = document.getElementById('accountNumber').innerText;
-    navigator.clipboard.writeText(accountText).then(() => {
-      alert('계좌번호가 복사되었습니다!');
-    }).catch(() => {
-      alert('복사에 실패했습니다. 수동으로 복사해주세요.');
-    });
-  }
-
-  function openBank(url) {
-    window.open(url, '_blank');
-  }
-</script>
-
-</body>
-</html>
+    flex-direction: column; /* 아*
