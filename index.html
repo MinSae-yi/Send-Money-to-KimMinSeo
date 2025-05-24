@@ -60,7 +60,8 @@
     gap: 1rem;
     width: 320px;
   }
-  .bank-btn {
+  a.bank-btn {
+    display: block;
     border: none;
     padding: 1rem 1.5rem;
     border-radius: 6px;
@@ -70,20 +71,21 @@
     box-shadow: 0 3px 6px rgba(0,0,0,0.1);
     transition: background-color 0.3s;
     width: 100%;
-    text-align: center;  /* 가운데 정렬 */
+    text-align: center;
     color: white;
+    text-decoration: none;
   }
-  .bank-btn.toss {
+  a.bank-btn.toss {
     background-color: #0077cc;
   }
-  .bank-btn.toss:hover {
+  a.bank-btn.toss:hover {
     background-color: #005fa3;
   }
-  .bank-btn.kakao {
+  a.bank-btn.kakao {
     background-color: #feda00;
     color: #3c1e1e;
   }
-  .bank-btn.kakao:hover {
+  a.bank-btn.kakao:hover {
     background-color: #e6c800;
   }
 </style>
@@ -98,12 +100,12 @@
   </section>
 
   <section class="banks-panel">
-    <button class="bank-btn toss" onclick="openBank('https://www.tossbank.com')">
-      토스뱅크
-    </button>
-    <button class="bank-btn kakao" onclick="openBank('https://www.kakaobank.com')">
+    <a class="bank-btn toss" href="tossbank://send?recipientNo=94900200430797&recipientName=김민서&bankCode=04">
+      토스뱅크 바로 송금
+    </a>
+    <a class="bank-btn kakao" href="https://www.kakaobank.com" target="_blank" rel="noopener noreferrer">
       카카오뱅크
-    </button>
+    </a>
   </section>
 
 <script>
@@ -114,10 +116,6 @@
     }).catch(() => {
       alert('복사에 실패했습니다. 수동으로 복사해주세요.');
     });
-  }
-
-  function openBank(url) {
-    window.open(url, '_blank');
   }
 </script>
 
