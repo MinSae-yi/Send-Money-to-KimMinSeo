@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>내 계좌 & 은행 서비스</title>
 <style>
-  /* 기존 스타일 유지 */
   body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: #f5f7fa;
@@ -55,6 +54,7 @@
   button.copy-btn:hover {
     background-color: #45a049;
   }
+
   .banks-panel {
     display: flex;
     flex-direction: column;
@@ -68,30 +68,61 @@
     border-radius: 6px;
     cursor: pointer;
     font-size: 1.1rem;
-    font-weight: 400;
+    font-weight: 600;
     box-shadow: 0 3px 6px rgba(0,0,0,0.1);
     transition: background-color 0.3s;
     width: 100%;
     text-align: center;
     color: white;
-
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     text-decoration: none;
   }
   .bank-btn.toss {
-    background-color: #0077cc;
+    background-color: #0077cc; /* 토스뱅크 파란색 */
   }
   .bank-btn.toss:hover {
     background-color: #005fa3;
   }
   .bank-btn.kakao {
-    background-color: #feda00;
+    background-color: #feda00; /* 카카오뱅크 노란색 */
     color: #3c1e1e;
   }
   .bank-btn.kakao:hover {
     background-color: #e6c800;
+  }
+  .bank-btn.kb {
+    background-color: #d4af37; /* 국민은행 - 카카오뱅크보다 진한 노란색 */
+    color: #3c1e1e;
+  }
+  .bank-btn.kb:hover {
+    background-color: #b8942c;
+  }
+  .bank-btn.hana {
+    background-color: #c8facc; /* 하나은행 - 연한 초록색 */
+    color: #1a4d27;
+  }
+  .bank-btn.hana:hover {
+    background-color: #a1d9a2;
+  }
+  .bank-btn.woori {
+    background-color: #005f99; /* 우리은행 - 토스뱅크보다 약간 진한 파란색 */
+  }
+  .bank-btn.woori:hover {
+    background-color: #004d7a;
+  }
+  .bank-btn.shinhan {
+    background-color: #003366; /* 신한은행 - 제일 진한 파란색 */
+  }
+  .bank-btn.shinhan:hover {
+    background-color: #002244;
+  }
+  .bank-btn.nh {
+    background-color: #4caf50; /* 농협은행 - 계좌번호 복사 버튼과 같은 색 */
+  }
+  .bank-btn.nh:hover {
+    background-color: #45a049;
   }
 </style>
 </head>
@@ -105,11 +136,26 @@
   </section>
 
   <section class="banks-panel">
-    <a class="bank-btn toss" href="https://toss.im" target="_blank" rel="noopener noreferrer" title="토스뱅크 웹 열기">
+    <a class="bank-btn toss" href="tossbank://" title="토스뱅크 바로 실행">
       토스뱅크
     </a>
-    <a class="bank-btn kakao" href="kakaobank://" title="카카오뱅크 앱 바로 열기">
+    <a class="bank-btn kakao" href="kakaobank://" title="카카오뱅크 바로 실행">
       카카오뱅크
+    </a>
+    <a class="bank-btn kb" href="kb-bank://" title="국민은행 바로 실행">
+      국민은행
+    </a>
+    <a class="bank-btn hana" href="hanabank://" title="하나은행 바로 실행">
+      하나은행
+    </a>
+    <a class="bank-btn woori" href="woori-bank://" title="우리은행 바로 실행">
+      우리은행
+    </a>
+    <a class="bank-btn shinhan" href="shinhanbank://" title="신한은행 바로 실행">
+      신한은행
+    </a>
+    <a class="bank-btn nh" href="nhbank://" title="농협은행 바로 실행">
+      농협은행
     </a>
   </section>
 
