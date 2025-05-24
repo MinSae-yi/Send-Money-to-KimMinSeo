@@ -9,15 +9,15 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: #f5f7fa;
     margin: 0;
-    padding: 2rem;
+    padding: 1.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2rem;
+    gap: 1.5rem;
   }
   .account-section {
     background: #fff;
-    padding: 1.5rem 2rem;
+    padding: 1.2rem 1.5rem;
     border-radius: 8px;
     box-shadow: 0 0 8px rgba(0,0,0,0.1);
     text-align: center;
@@ -25,20 +25,20 @@
     max-width: 100%;
   }
   .account-number {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     font-weight: bold;
-    margin-bottom: 0.6rem;
+    margin-bottom: 0.5rem;
     user-select: all;
   }
   .account-name {
-    font-size: 1.3rem;
-    margin-bottom: 0.6rem;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
     color: #555;
   }
   .bank-name {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: #888;
-    margin-bottom: 1.2rem;
+    margin-bottom: 1rem;
   }
   button.copy-btn {
     background-color: #4caf50;
@@ -58,18 +58,18 @@
   .banks-panel {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
-    width: 320px; /* 계좌 복사 버튼과 동일한 넓이 */
+    gap: 0.5rem;
+    width: 320px;
     max-width: 100%;
   }
   .bank-btn {
     border: none;
-    padding: 0.75rem 1rem;
+    padding: 0.55rem 0.8rem;
     border-radius: 6px;
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 600;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     transition: background-color 0.3s;
     width: 100%;
     text-align: center;
@@ -80,46 +80,46 @@
     text-decoration: none;
   }
   .bank-btn.toss {
-    background-color: #0077cc; /* 토스 */
+    background-color: #0077cc;
   }
   .bank-btn.toss:hover {
     background-color: #005fa3;
   }
   .bank-btn.kakao {
-    background-color: #feda00; /* 카카오 */
+    background-color: #feda00;
     color: #3c1e1e;
   }
   .bank-btn.kakao:hover {
     background-color: #e6c800;
   }
   .bank-btn.kb {
-    background-color: #d4af37; /* 국민 - 진한 노란색 */
+    background-color: #d4af37;
     color: #3c1e1e;
   }
   .bank-btn.kb:hover {
     background-color: #b8942c;
   }
   .bank-btn.hana {
-    background-color: #c8facc; /* 하나 - 연한 초록 */
+    background-color: #c8facc;
     color: #1a4d27;
   }
   .bank-btn.hana:hover {
     background-color: #a1d9a2;
   }
   .bank-btn.woori {
-    background-color: #005f99; /* 우리 - 약간 진한 파랑 */
+    background-color: #005f99;
   }
   .bank-btn.woori:hover {
     background-color: #004d7a;
   }
   .bank-btn.shinhan {
-    background-color: #003366; /* 신한 - 제일 진한 파랑 */
+    background-color: #003366;
   }
   .bank-btn.shinhan:hover {
     background-color: #002244;
   }
   .bank-btn.nh {
-    background-color: #4caf50; /* 농협 - 계좌 복사 버튼과 동일 */
+    background-color: #4caf50;
   }
   .bank-btn.nh:hover {
     background-color: #45a049;
@@ -136,13 +136,13 @@
   </section>
 
   <section class="banks-panel">
-    <a class="bank-btn toss" href="tossbank://" title="토스 바로 실행">토스</a>
-    <a class="bank-btn kakao" href="kakaobank://" title="카카오 바로 실행">카카오</a>
-    <a class="bank-btn kb" href="kb-bank://" title="국민 바로 실행">국민</a>
-    <a class="bank-btn hana" href="hanabank://" title="하나 바로 실행">하나</a>
-    <a class="bank-btn woori" href="woori-bank://" title="우리 바로 실행">우리</a>
-    <a class="bank-btn shinhan" href="shinhanbank://" title="신한 바로 실행">신한</a>
-    <a class="bank-btn nh" href="nhbank://" title="농협 바로 실행">농협</a>
+    <a class="bank-btn toss" href="tossbank://" title="토스 실행">토스</a>
+    <a class="bank-btn kakao" href="kakaobank://" title="카카오 실행">카카오</a>
+    <a class="bank-btn kb" href="kb-bank://" title="국민 실행">국민</a>
+    <a class="bank-btn hana" href="hanabank://" title="하나 실행">하나</a>
+    <a class="bank-btn woori" href="woori-bank://" title="우리 실행">우리</a>
+    <a class="bank-btn shinhan" href="shinhanbank://" title="신한 실행">신한</a>
+    <a class="bank-btn nh" href="nhbank://" title="농협 실행">농협</a>
   </section>
 
 <script>
