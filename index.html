@@ -1,92 +1,92 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>내 계좌 & 은행 서비스</title>
-<style>
-  body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #f5f7fa;
-    margin: 0;
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-  }
-  .account-section {
-    background: #fff;
-    padding: 1.5rem 2rem;
-    border-radius: 8px;
-    box-shadow: 0 0 8px rgba(0,0,0,0.1);
-    text-align: center;
-    width: 320px;
-  }
-  .account-number {
-    font-size: 1.6rem;
-    font-weight: bold;
-    margin-bottom: 0.6rem;
-    user-select: all;
-  }
-  .account-name {
-    font-size: 1.3rem;
-    margin-bottom: 0.6rem;
-    color: #555;
-  }
-  .bank-name {
-    font-size: 1.1rem;
-    color: #888;
-    margin-bottom: 1.2rem;
-  }
-  button.copy-btn {
-    background-color: #4caf50;
-    border: none;
-    color: white;
-    padding: 0.6rem 1.2rem;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.3s;
-    width: 100%;
-  }
-  button.copy-btn:hover {
-    background-color: #45a049;
-  }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>내 계좌 & 은행 서비스</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f5f7fa;
+      margin: 0;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+    }
+    .account-section {
+      background: #fff;
+      padding: 1.5rem 2rem;
+      border-radius: 8px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+      text-align: center;
+      width: 320px;
+    }
+    .account-number {
+      font-size: 1.6rem;
+      font-weight: bold;
+      margin-bottom: 0.6rem;
+      user-select: all;
+    }
+    .account-name {
+      font-size: 1.3rem;
+      margin-bottom: 0.6rem;
+      color: #555;
+    }
+    .bank-name {
+      font-size: 1.1rem;
+      color: #888;
+      margin-bottom: 1.2rem;
+    }
+    button.copy-btn {
+      background-color: #4caf50;
+      border: none;
+      color: white;
+      padding: 0.6rem 1.2rem;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s;
+      width: 100%;
+    }
+    button.copy-btn:hover {
+      background-color: #45a049;
+    }
 
-  .banks-panel {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    width: 320px;
-  }
-  .bank-btn {
-    border: none;
-    padding: 1rem 1.5rem;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 1.1rem;
-    font-weight: 600;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-    transition: background-color 0.3s;
-    width: 100%;
-    text-align: center;  /* 가운데 정렬 */
-    color: white;
-  }
-  .bank-btn.toss {
-    background-color: #0077cc;
-  }
-  .bank-btn.toss:hover {
-    background-color: #005fa3;
-  }
-  .bank-btn.kakao {
-    background-color: #feda00;
-    color: #3c1e1e;
-  }
-  .bank-btn.kakao:hover {
-    background-color: #e6c800;
-  }
-</style>
+    .banks-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      width: 320px;
+    }
+    .bank-btn {
+      border: none;
+      padding: 1rem 1.5rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      font-weight: 600;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+      transition: background-color 0.3s;
+      width: 100%;
+      text-align: center;
+    }
+    .bank-btn.toss {
+      background-color: #0077cc;
+      color: white;
+    }
+    .bank-btn.toss:hover {
+      background-color: #005fa3;
+    }
+    .bank-btn.kakao {
+      background-color: #feda00;
+      color: #3c1e1e;
+    }
+    .bank-btn.kakao:hover {
+      background-color: #e6c800;
+    }
+  </style>
 </head>
 <body>
 
@@ -98,28 +98,28 @@
   </section>
 
   <section class="banks-panel">
-    <button class="bank-btn toss" onclick="openBank('https://www.tossbank.com')">
-      토스뱅크
-    </button>
-    <button class="bank-btn kakao" onclick="openBank('https://www.kakaobank.com')">
-      카카오뱅크
-    </button>
+    <button class="bank-btn toss" onclick="openToss()">토스뱅크 바로 송금</button>
+    <button class="bank-btn kakao" onclick="openBank('https://www.kakaobank.com')">카카오뱅크</button>
   </section>
 
-<script>
-  function copyAccount() {
-    const accountText = document.getElementById('accountNumber').innerText;
-    navigator.clipboard.writeText(accountText).then(() => {
-      alert('계좌번호가 복사되었습니다!');
-    }).catch(() => {
-      alert('복사에 실패했습니다. 수동으로 복사해주세요.');
-    });
-  }
+  <script>
+    function copyAccount() {
+      const accountText = document.getElementById('accountNumber').innerText;
+      navigator.clipboard.writeText(accountText).then(() => {
+        alert('계좌번호가 복사되었습니다!');
+      }).catch(() => {
+        alert('복사에 실패했습니다. 수동으로 복사해주세요.');
+      });
+    }
 
-  function openBank(url) {
-    window.open(url, '_blank');
-  }
-</script>
+    function openBank(url) {
+      window.open(url, '_blank');
+    }
+
+    function openToss() {
+      window.location.href = 'tossbank://send?recipientNo=94900200430797&recipientName=김민서&bankCode=04';
+    }
+  </script>
 
 </body>
 </html>
