@@ -49,19 +49,13 @@
   }
   .button-container {
     display: flex;
-    flex-direction: row;  
+    flex-direction: column;  /* 세로 방향 배열 */
     gap: 12px;
     margin-top: 20px;
-    width: 320px;
-    justify-content: center;
+    width: 200px;
   }
   .button {
-    display: flex;
-    flex-direction: column; /* 아이콘 위, 글씨 아래 세로 정렬 */
-    align-items: center;    /* 수평 중앙 정렬 */
-    justify-content: center; /* 수직 중앙 정렬 */
-    gap: 8px;
-    padding: 12px 20px;
+    padding: 14px 0;
     border: none;
     border-radius: 8px;
     font-size: 18px;
@@ -69,21 +63,18 @@
     color: white;
     cursor: pointer;
     transition: background-color 0.3s;
-    min-width: 120px;
-    text-align: center; /* 텍스트 가운데 정렬 */
+    text-align: center;
+    width: 100%;
   }
   .button:hover {
     filter: brightness(0.9);
-  }
-  .icon {
-    width: 24px;
-    height: 24px;
   }
   .toss {
     background-color: #0077cc; /* 파란색 */
   }
   .kakao {
-    background-color: #3eb489; /* 카카오뱅크 색상 비슷하게 조정 */
+    background-color: #fede00; /* 노란색 */
+    color: #3c1e1e; /* 검정색보다는 어두운 텍스트로 */
   }
 </style>
 </head>
@@ -96,9 +87,24 @@
   </section>
 
   <div class="button-container">
-    <button class="button toss" onclick="openBank('https://www.tossbank.com')">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAASCAYAAAC3GmgdAAAACXBIWXMAAAsTAAALEwEAmpwYAAABX0lEQVR4nM3UPWtCURDH8d81NkQFhkx6ggqISkx9h6GxvFUkf4hZ4Qlk1QlkOp0F+DjPtwKiQshF5HzT/OP/e7r9F2x1PaZ13eN8mUNLoVkQFo04y4lMQhwgoVkQFo04y4hMQhwhIrTP6bhnwA7G39ChH4vI2gLpLtyVMEBOQgsYMvlMb4L3V4Ewv96TpO/NMn4jSi6n0ne+RZF0OpMl57jk7eq5RJk+nKn92nCFv5BLZbWimOUUzTqcC5uC0gU7YNqjZcwrc6tUOBRpKcdxtCD3vTFFuMVO5aQhYrAyXOT9ClRgEBJRG9C6vlwrErl5ubZ7JBRzGDvdbqp7rCxpU6wEdDgeUWiUes+TQqXY6mjUnXLsWA0WKgkqzH3+n0TBSLnFGWcZ2bW1/Iu0AnvOS4Z3AF/ERyvA5wpE+qN7u8ChG/QkOmmaYxTnS+0AAAAAAAAAID3O7yCcTyq0lH4AAAAASUVORK5CYII=" alt="토스뱅크 로고" class="icon" />
-      토스뱅크
-    </button>
-    <button class="button kakao" onclick="openBank('https://www.kakaobank.com')">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAASCAYAAAC3GmgdAAAAC
+    <button class="button toss" onclick="openBank('https://www.tossbank.com')">토스뱅크</button>
+    <button class="button kakao" onclick="openBank('https://www.kakaobank.com')">카카오뱅크</button>
+  </div>
+
+<script>
+  function copyAccount() {
+    const accountText = document.getElementById('accountNumber').innerText;
+    navigator.clipboard.writeText(accountText).then(() => {
+      alert('계좌번호가 복사되었습니다!');
+    }).catch(() => {
+      alert('복사에 실패했습니다. 수동으로 복사해주세요.');
+    });
+  }
+
+  function openBank(url) {
+    window.open(url, '_blank');
+  }
+</script>
+
+</body>
+</html>
