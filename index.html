@@ -9,15 +9,15 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: #f5f7fa;
     margin: 0;
-    padding: 1.5rem;
+    padding: 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.5rem;
+    gap: 2rem;
   }
   .account-section {
     background: #fff;
-    padding: 1.2rem 1.5rem;
+    padding: 1.5rem 2rem;
     border-radius: 8px;
     box-shadow: 0 0 8px rgba(0,0,0,0.1);
     text-align: center;
@@ -25,29 +25,29 @@
     max-width: 100%;
   }
   .account-number {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     font-weight: bold;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.6rem;
     user-select: all;
   }
   .account-name {
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
+    font-size: 1.3rem;
+    margin-bottom: 0.6rem;
     color: #555;
   }
   .bank-name {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     color: #888;
-    margin-bottom: 1rem;
+    margin-bottom: 1.2rem;
   }
   button.copy-btn {
     background-color: #4caf50;
     border: none;
     color: white;
-    padding: 0.5rem 1rem;
+    padding: 0.6rem 1.2rem;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 0.9rem;
+    font-size: 1rem;
     transition: background-color 0.3s;
     width: 100%;
   }
@@ -58,71 +58,37 @@
   .banks-panel {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.7rem;
     width: 320px;
     max-width: 100%;
   }
   .bank-btn {
-    border: none;
-    padding: 0.55rem 0.8rem;
+    display: inline-block;
+    text-decoration: none;
+    padding: 0.8rem 1rem;
     border-radius: 6px;
-    cursor: pointer;
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-weight: 600;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    transition: background-color 0.3s;
-    width: 100%;
     text-align: center;
+    width: 100%;
     color: white;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    text-decoration: none;
   }
-  .bank-btn.toss {
-    background-color: #0077cc;
-  }
-  .bank-btn.toss:hover {
-    background-color: #005fa3;
-  }
-  .bank-btn.kakao {
-    background-color: #feda00;
-    color: #3c1e1e;
-  }
-  .bank-btn.kakao:hover {
-    background-color: #e6c800;
-  }
-  .bank-btn.kb {
-    background-color: #d4af37;
-    color: #3c1e1e;
-  }
-  .bank-btn.kb:hover {
-    background-color: #b8942c;
-  }
-  .bank-btn.hana {
-    background-color: #c8facc;
-    color: #1a4d27;
-  }
-  .bank-btn.hana:hover {
-    background-color: #a1d9a2;
-  }
-  .bank-btn.woori {
-    background-color: #005f99;
-  }
-  .bank-btn.woori:hover {
-    background-color: #004d7a;
-  }
-  .bank-btn.shinhan {
-    background-color: #003366;
-  }
-  .bank-btn.shinhan:hover {
-    background-color: #002244;
-  }
-  .bank-btn.nh {
-    background-color: #4caf50;
-  }
-  .bank-btn.nh:hover {
-    background-color: #45a049;
+
+  /* 버튼 색상 */
+  .toss { background-color: #0077cc; }
+  .kakao { background-color: #feda00; color: #3c1e1e; }
+  .kookmin { background-color: #d4af00; color: #000; }
+  .hana { background-color: #b2e2b2; color: #000; }
+  .woori { background-color: #0055aa; }
+  .shinhan { background-color: #003366; }
+  .nonghyup { background-color: #4caf50; }
+
+  .bank-btn:hover {
+    opacity: 0.85;
   }
 </style>
 </head>
@@ -131,18 +97,18 @@
   <section class="account-section">
     <div class="account-number" id="accountNumber">94900200430797</div>
     <div class="account-name">김민서</div>
-    <div class="bank-name">(국민은행)</div>
+    <div class="bank-name">(국민)</div>
     <button class="copy-btn" onclick="copyAccount()">계좌번호 복사</button>
   </section>
 
   <section class="banks-panel">
-    <a class="bank-btn toss" href="tossbank://" title="토스 실행">토스</a>
-    <a class="bank-btn kakao" href="kakaobank://" title="카카오 실행">카카오</a>
-    <a class="bank-btn kb" href="kb-bank://" title="국민 실행">국민</a>
-    <a class="bank-btn hana" href="hanabank://" title="하나 실행">하나</a>
-    <a class="bank-btn woori" href="woori-bank://" title="우리 실행">우리</a>
-    <a class="bank-btn shinhan" href="shinhanbank://" title="신한 실행">신한</a>
-    <a class="bank-btn nh" href="nhbank://" title="농협 실행">농협</a>
+    <a class="bank-btn toss" href="tossbank://">토스뱅크</a>
+    <a class="bank-btn kakao" href="kakaobank://">카카오</a>
+    <a class="bank-btn kookmin" href="kb-bank://">국민</a>
+    <a class="bank-btn hana" href="hana1qbank://">하나</a>
+    <a class="bank-btn woori" href="wooribank://">우리</a>
+    <a class="bank-btn shinhan" href="shinhan-sbank://">신한</a>
+    <a class="bank-btn nonghyup" href="nhapp://">농협</a>
   </section>
 
 <script>
