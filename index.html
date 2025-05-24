@@ -60,8 +60,7 @@
     gap: 1rem;
     width: 320px;
   }
-  a.bank-btn {
-    display: block;
+  .bank-btn {
     border: none;
     padding: 1rem 1.5rem;
     border-radius: 6px;
@@ -73,19 +72,21 @@
     width: 100%;
     text-align: center;
     color: white;
-    text-decoration: none;
+    white-space: nowrap; /* 줄바꿈 없이 */
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
-  a.bank-btn.toss {
+  .bank-btn.toss {
     background-color: #0077cc;
   }
-  a.bank-btn.toss:hover {
+  .bank-btn.toss:hover {
     background-color: #005fa3;
   }
-  a.bank-btn.kakao {
+  .bank-btn.kakao {
     background-color: #feda00;
     color: #3c1e1e;
   }
-  a.bank-btn.kakao:hover {
+  .bank-btn.kakao:hover {
     background-color: #e6c800;
   }
 </style>
