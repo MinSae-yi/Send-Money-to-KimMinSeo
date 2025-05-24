@@ -47,59 +47,35 @@
   button.copy-btn:hover {
     background-color: #45a049;
   }
-
-  /* 합친 버튼 스타일 */
-  .button-container {
+  .banks-panel {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 20px;
-    width: 320px;
+    gap: 1rem;
+    flex-wrap: nowrap;
+    justify-content: center;
+    max-width: 400px;
   }
-  .button {
+  .bank-btn {
+    background-color: #0077cc;
+    color: white;
+    border: none;
+    padding: 1rem 1.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    transition: background-color 0.3s;
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 12px 20px;
-    text-decoration: none;
-    background-color: #f5f5f5;
-    border-radius: 8px;
-    font-size: 18px;
-    font-weight: bold;
-    color: #333;
-    cursor: pointer;
-    border: none;
-    transition: background-color 0.3s;
+    gap: 8px;
+    min-width: 160px;
   }
-  .button:hover {
-    background-color: #e0e0e0;
+  .bank-btn:hover {
+    background-color: #005fa3;
   }
-  .icon {
+  .bank-icon {
     width: 24px;
     height: 24px;
-  }
-
-  /* 개별 버튼 색상 */
-  .toss {
-    background-color: #00c73c;
-    color: white;
-  }
-  .toss:hover {
-    background-color: #00a32d;
-  }
-  .kakaopay {
-    background-color: #ffcd00;
-    color: #3c1e1e;
-  }
-  .kakaopay:hover {
-    background-color: #e6bb00;
-  }
-  .hana {
-    background-color: #0072ce;
-    color: white;
-  }
-  .hana:hover {
-    background-color: #005ea3;
   }
 </style>
 </head>
@@ -111,17 +87,16 @@
     <button class="copy-btn" onclick="copyAccount()">계좌번호 복사</button>
   </section>
 
-  <div class="button-container">
-    <button class="button toss" onclick="openBank('https://toss.me/예시')">
-      <img src="assets/toss.png" alt="Toss" class="icon">토스뱅크
+  <section class="banks-panel">
+    <button class="bank-btn" onclick="openBank('https://www.tossbank.com')">
+      <img class="bank-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAASCAYAAAC3GmgdAAAACXBIWXMAAAsTAAALEwEAmpwYAAABX0lEQVR4nM3UPWtCURDH8d81NkQFhkx6ggqISkx9h6GxvFUkf4hZ4Qlk1QlkOp0F+DjPtwKiQshF5HzT/OP/e7r9F2x1PaZ13eN8mUNLoVkQFo04y4lMQhwgoVkQFo04y4hMQhwhIrTP6bhnwA7G39ChH4vI2gLpLtyVMEBOQgsYMvlMb4L3V4Ewv96TpO/NMn4jSi6n0ne+RZF0OpMl57jk7eq5RJk+nKn92nCFv5BLZbWimOUUzTqcC5uC0gU7YNqjZcwrc6tUOBRpKcdxtCD3vTFFuMVO5aQhYrAyXOT9ClRgEBJRG9C6vlwrErl5ubZ7JBRzGDvdbqp7rCxpU6wEdDgeUWiUes+TQqXY6mjUnXLsWA0WKgkqzH3+n0TBSLnFGWcZ2bW1/Iu0AnvOS4Z3AF/ERyvA5wpE+qN7u8ChG/QkOmmaYxTnS+0AAAAAAAAAID3O7yCcTyq0lH4AAAAASUVORK5CYII=" alt="토스뱅크 로고" />
+      토스뱅크
     </button>
-    <button class="button kakaopay" onclick="openBank('https://예시.kakaopay.com')">
-      <img src="assets/kakaopay.png" alt="KakaoPay" class="icon">카카오페이
+    <button class="bank-btn" onclick="openBank('https://www.kakaobank.com')">
+      <img class="bank-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAASCAYAAAC3GmgdAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAv0lEQVR4nM3UQQrCMBBF4Xv8kykT+gwtgIphVhFmhJsHwdoNBYXLBH4A6c4pfhsT9PBno3exEHqYDE37J5qaJ3ApuTf1vIDPMjAEm+6gS8QgiFdi3ZwAEqN2Eo5dTpJvwAOCyR4dIQhcdgSTecNIFGZ+vBZBv0zTAQr5rIwwS7oK9b2CugQPtC/xACvQvqObHmgDE4ZRRb+ZcgYH7Oc7xqkeOYB9DGH+N6LPLN+QoK2Ro/QquQX9Y7rRQn+FaGdO7FdwEj43Lu3rWqHwAAAABJRU5ErkJggg==" alt="카카오뱅크 로고" />
+      카카오뱅크
     </button>
-    <button class="button hana" onclick="openBank('https://예시.hana.com')">
-      <img src="assets/hana.png" alt="Hana" class="icon">하나은행
-    </button>
-  </div>
+  </section>
 
 <script>
   function copyAccount() {
