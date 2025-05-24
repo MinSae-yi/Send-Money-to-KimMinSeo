@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>내 계좌 & 은행 딥러닝 서비스</title>
+<title>내 계좌 & 은행 서비스</title>
 <style>
   body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -50,9 +50,9 @@
   .banks-panel {
     display: flex;
     gap: 1rem;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     justify-content: center;
-    max-width: 700px;
+    max-width: 400px;
   }
   .bank-btn {
     background-color: #0077cc;
@@ -65,9 +65,17 @@
     font-weight: 600;
     box-shadow: 0 3px 6px rgba(0,0,0,0.1);
     transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 160px;
   }
   .bank-btn:hover {
     background-color: #005fa3;
+  }
+  .bank-icon {
+    width: 24px;
+    height: 24px;
   }
 </style>
 </head>
@@ -80,11 +88,14 @@
   </section>
 
   <section class="banks-panel">
-    <button class="bank-btn" onclick="openBank('https://www.kakaobank.com')">카카오뱅크 딥러닝</button>
-    <button class="bank-btn" onclick="openBank('https://www.tossbank.com')">토스뱅크 딥러닝</button>
-    <button class="bank-btn" onclick="openBank('https://www.hanabank.com')">하나은행 딥러닝</button>
-    <button class="bank-btn" onclick="openBank('https://www.wooribank.com')">우리은행 딥러닝</button>
-    <button class="bank-btn" onclick="openBank('https://www.shinhan.com')">신한은행 딥러닝</button>
+    <button class="bank-btn" onclick="openBank('https://www.tossbank.com')">
+      <img class="bank-icon" src="https://upload.wikimedia.org/wikipedia/commons/0/0f/Toss_logo.svg" alt="토스뱅크 로고" />
+      토스뱅크
+    </button>
+    <button class="bank-btn" onclick="openBank('https://www.kakaobank.com')">
+      <img class="bank-icon" src="https://upload.wikimedia.org/wikipedia/commons/2/2d/KakaoBank_logo.svg" alt="카카오뱅크 로고" />
+      카카오뱅크
+    </button>
   </section>
 
 <script>
