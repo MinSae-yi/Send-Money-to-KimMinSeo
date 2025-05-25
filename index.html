@@ -120,11 +120,11 @@
   <section class="banks-panel">
     <div class="bank-btn kakao" data-link="kakaobank://">카카오</div>
     <div class="bank-btn toss" data-link="supertoss://">토스뱅크</div>
-    <div class="bank-btn kookmin" data-link="kb-acp://">국민</div>
+    <div class="bank-btn kookmin" data-link="liivbank://">국민</div>
     <div class="bank-btn hana" data-link="hana1qbank://">하나</div>
     <div class="bank-btn woori" data-link="com.wooricard.wcard://">우리</div>
     <div class="bank-btn shinhan" data-link="cloudpay://">신한</div>
-    <div class="bank-btn nonghyup" data-link="nhappcardansimclick://">농협</div>
+    <div class="bank-btn nonghyup" data-link="nhallonepayansimclick://">농협</div>
   </section>
 
   <script>
@@ -169,7 +169,13 @@
       btn.addEventListener('click', async () => {
         await copyAccount();
         const link = btn.getAttribute('data-link');
-        openAppWithFallback(link);
+        const noCheckLinks = ['kakaobank://', 'supertoss://'];
+
+        if (noCheckLinks.includes(link)) {
+          location.href = link;
+        } else {
+          openAppWithFallback(link);
+        }
       });
     });
 
