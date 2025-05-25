@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
@@ -15,7 +15,6 @@
       align-items: center;
       gap: 2rem;
     }
-
     #instaWarning {
       display: none;
       background: #fffae6;
@@ -27,7 +26,6 @@
       max-width: 320px;
       text-align: center;
     }
-
     .account-section {
       background: #fff;
       padding: 1.5rem 2rem;
@@ -37,26 +35,22 @@
       width: 320px;
       max-width: 100%;
     }
-
     .account-number {
       font-size: 1.4rem;
       font-weight: bold;
       margin-bottom: 0.6rem;
       user-select: all;
     }
-
     .account-name {
       font-size: 1.2rem;
       margin-bottom: 0.6rem;
       color: #555;
     }
-
     .bank-name {
       font-size: 0.9rem;
       color: #888;
       margin-bottom: 1.2rem;
     }
-
     button.copy-btn {
       background-color: #4caf50;
       border: none;
@@ -69,11 +63,9 @@
       width: 100%;
       margin-bottom: 1rem;
     }
-
     button.copy-btn:hover {
       background-color: #45a049;
     }
-
     .banks-panel {
       display: flex;
       flex-direction: column;
@@ -81,7 +73,6 @@
       width: 320px;
       max-width: 100%;
     }
-
     .bank-btn {
       display: inline-block;
       text-decoration: none;
@@ -99,8 +90,6 @@
       cursor: pointer;
       user-select: none;
     }
-
-    /* 버튼 색상 */
     .kakao { background-color: #feda00; color: #3c1e1e; }
     .toss { background-color: #0077cc; }
     .kookmin { background-color: #d4af00; color: #000; }
@@ -108,11 +97,9 @@
     .woori { background-color: #0055aa; }
     .shinhan { background-color: #003366; }
     .nonghyup { background-color: #4caf50; }
-
     .bank-btn:hover {
       opacity: 0.85;
     }
-
     .pending {
       font-size: 0.7rem;
       color: #777;
@@ -140,22 +127,15 @@
 
   <section class="banks-panel">
     <div class="bank-btn kakao" data-link="kakaobank://">카카오</div>
-
-    <div class="bank-btn toss" data-link="tossbank://">토스뱅크</div>
-    <div class="pending">(추후 지원 예정)</div>
-
+    <div class="bank-btn toss" data-link="supertoss://">토스뱅크</div>
     <div class="bank-btn kookmin" data-link="kbbank://">국민</div>
     <div class="pending">(추후 지원 예정)</div>
-
     <div class="bank-btn hana" data-link="hana1qbank://">하나</div>
     <div class="pending">(추후 지원 예정)</div>
-
     <div class="bank-btn woori" data-link="wooribank://">우리</div>
     <div class="pending">(추후 지원 예정)</div>
-
     <div class="bank-btn shinhan" data-link="shinhan-sbank://">신한</div>
     <div class="pending">(추후 지원 예정)</div>
-
     <div class="bank-btn nonghyup" data-link="nhapp://">농협</div>
     <div class="pending">(추후 지원 예정)</div>
   </section>
@@ -164,10 +144,9 @@
     const accountNumber = document.getElementById('accountNumber').innerText;
     const instaWarning = document.getElementById('instaWarning');
 
-    // 인스타그램 웹뷰 체크 (User-Agent)
+    // 인스타그램 웹뷰 체크
     const ua = navigator.userAgent || navigator.vendor || window.opera;
     const isInstagram = ua.indexOf('Instagram') > -1;
-
     if (isInstagram) {
       instaWarning.style.display = 'block';
     }
@@ -186,20 +165,9 @@
     // 은행 앱 버튼 클릭 이벤트
     document.querySelectorAll('.bank-btn').forEach(btn => {
       btn.addEventListener('click', async () => {
-        // 복사 먼저 시도
         const copied = await copyAccount();
-
-        // 딥링크 실행
         const link = btn.getAttribute('data-link');
-
-        // 딥링크 실행 방식 (location.href)
-        // 인스타 웹뷰는 제한적이라 완벽하진 않음
         location.href = link;
-
-        // 복사 실패 + 인스타웹뷰인 경우 안내 메시지 띄움 (alert은 이미 뜸)
-        if (!copied && isInstagram) {
-          // 이미 안내 메시지가 상단에 있으므로 추가 액션은 생략해도 됨
-        }
       });
     });
 
