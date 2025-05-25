@@ -1,55 +1,126 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>국민은행 앱 실행</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f5f7fa;
-      margin: 0;
-      padding: 2rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 2rem;
-    }
-    .launch-section {
-      background: #fff;
-      padding: 1.5rem 2rem;
-      border-radius: 8px;
-      box-shadow: 0 0 8px rgba(0,0,0,0.1);
-      text-align: center;
-      width: 320px;
-      max-width: 100%;
-    }
-    .launch-button {
-      background-color: #d4af00;
-      color: #000;
-      padding: 1rem 1.2rem;
-      border-radius: 6px;
-      font-size: 1.1rem;
-      font-weight: bold;
-      text-decoration: none;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-      width: 100%;
-      display: inline-block;
-      text-align: center;
-      cursor: pointer;
-      transition: opacity 0.3s;
-    }
-    .launch-button:hover {
-      opacity: 0.85;
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>내 계좌 & 은행 서비스</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f5f7fa;
+    margin: 0;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+  .account-section {
+    background: #fff;
+    padding: 1.5rem 2rem;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    text-align: center;
+    width: 320px;
+    max-width: 100%;
+  }
+  .account-number {
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin-bottom: 0.6rem;
+    user-select: all;
+  }
+  .account-name {
+    font-size: 1.3rem;
+    margin-bottom: 0.6rem;
+    color: #555;
+  }
+  .bank-name {
+    font-size: 0.9rem;
+    color: #888;
+    margin-bottom: 1.2rem;
+  }
+  button.copy-btn {
+    background-color: #4caf50;
+    border: none;
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+    width: 100%;
+  }
+  button.copy-btn:hover {
+    background-color: #45a049;
+  }
+
+  .banks-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    width: 320px;
+    max-width: 100%;
+  }
+  .bank-btn {
+    display: inline-block;
+    text-decoration: none;
+    padding: 0.8rem 1rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    width: 100%;
+    color: white;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* 버튼 색상 */
+  .toss { background-color: #0077cc; }
+  .kakao { background-color: #feda00; color: #3c1e1e; }
+  .kookmin { background-color: #d4af00; color: #000; }
+  .hana { background-color: #b2e2b2; color: #000; }
+  .woori { background-color: #0055aa; }
+  .shinhan { background-color: #003366; }
+  .nonghyup { background-color: #4caf50; }
+
+  .bank-btn:hover {
+    opacity: 0.85;
+  }
+</style>
 </head>
 <body>
 
-  <section class="launch-section">
-    <h2>국민앱 실행</h2>
-    <a class="launch-button" href="kbbank://">국민 실행</a>
+  <section class="account-section">
+    <div class="account-number" id="accountNumber">94900200430797</div>
+    <div class="account-name">김민서</div>
+    <div class="bank-name">(국민)</div>
+    <button class="copy-btn" onclick="copyAccount()">계좌번호 복사</button>
   </section>
+
+  <section class="banks-panel">
+    <a class="bank-btn toss" href="tossbank://">토스뱅크</a>
+    <a class="bank-btn kakao" href="kakaobank://">카카오</a>
+    <a class="bank-btn kookmin" href="kb-bank://">국민</a>
+    <a class="bank-btn hana" href="hana1qbank://">하나</a>
+    <a class="bank-btn woori" href="wooribank://">우리</a>
+    <a class="bank-btn shinhan" href="shinhan-sbank://">신한</a>
+    <a class="bank-btn nonghyup" href="nhapp://">농협</a>
+  </section>
+
+<script>
+  function copyAccount() {
+    const accountText = document.getElementById('accountNumber').innerText;
+    navigator.clipboard.writeText(accountText).then(() => {
+      alert('계좌번호가 복사되었습니다!');
+    }).catch(() => {
+      alert('복사에 실패했습니다. 수동으로 복사해주세요.');
+    });
+  }
+</script>
 
 </body>
 </html>
