@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -15,6 +16,7 @@
       align-items: center;
       gap: 2rem;
     }
+
     #instaWarning {
       display: none;
       background: #fffae6;
@@ -26,31 +28,36 @@
       max-width: 320px;
       text-align: center;
     }
+
     .account-section {
       background: #fff;
       padding: 1.5rem 2rem;
       border-radius: 8px;
-      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
       text-align: center;
       width: 320px;
       max-width: 100%;
     }
+
     .account-number {
       font-size: 1.4rem;
       font-weight: bold;
       margin-bottom: 0.6rem;
       user-select: all;
     }
+
     .account-name {
       font-size: 1.2rem;
       margin-bottom: 0.6rem;
       color: #555;
     }
+
     .bank-name {
       font-size: 0.9rem;
       color: #888;
       margin-bottom: 1.2rem;
     }
+
     button.copy-btn {
       background-color: #4caf50;
       border: none;
@@ -63,9 +70,11 @@
       width: 100%;
       margin-bottom: 1rem;
     }
+
     button.copy-btn:hover {
       background-color: #45a049;
     }
+
     .banks-panel {
       display: flex;
       flex-direction: column;
@@ -73,6 +82,7 @@
       width: 320px;
       max-width: 100%;
     }
+
     .bank-btn {
       display: inline-block;
       text-decoration: none;
@@ -83,31 +93,66 @@
       text-align: center;
       width: 100%;
       color: white;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
       cursor: pointer;
       user-select: none;
     }
-    .kakao { background-color: #feda00; color: #3c1e1e; }
-    .toss { background-color: #0077cc; }
-    .kookmin { background-color: #d4af00; color: #000; }
-    .hana { background-color: #b2e2b2; color: #000; }
-    .woori { background-color: #0055aa; }
-    .shinhan { background-color: #003366; }
-    .nonghyup { background-color: #4caf50; }
+
+    .kakao {
+      background-color: #feda00;
+      color: #3c1e1e;
+    }
+
+    .toss {
+      background-color: #0077cc;
+    }
+
+    .kookmin {
+      background-color: #d4af00;
+      color: #000;
+    }
+
+    .hana {
+      background-color: #b2e2b2;
+      color: #000;
+    }
+
+    .woori {
+      background-color: #0055aa;
+    }
+
+    .shinhan {
+      background-color: #003366;
+    }
+
+    .nonghyup {
+      background-color: #4caf50;
+    }
+
     .bank-btn:hover {
       opacity: 0.85;
     }
+
+    .pending {
+      font-size: 0.7rem;
+      color: #777;
+      margin-top: -0.2rem;
+      margin-bottom: 0.3rem;
+      text-align: center;
+      user-select: none;
+    }
   </style>
 </head>
+
 <body>
 
   <div id="instaWarning">
-    ⚠️ 인스타그램 내장 브라우저에서는 자동 복사가 제한될 수 있습니다.<br/>
-    버튼을 누르면 앱이 열리지만, 복사가 안 될 경우 계좌번호 복사를 눌러 주세요.
-    새로고침 화면이 나올 경우 새로고침을 눌러주시면 정상 진행됩니다
+    ⚠️ 인스타그램 내장 브라우저에서는 자동 복사가 제한될 수 있습니다.<br />
+    버튼을 누르면 앱이 열리지만, 복사가 안 될 경우 계좌번호 복사를 눌러 주세요.<br />
+    새로고침 화면이 나올 경우 새로고침을 눌러주시면 정상 진행됩니다.
   </div>
 
   <section class="account-section">
@@ -130,6 +175,7 @@
   <script>
     const accountNumber = document.getElementById('accountNumber').innerText;
     const instaWarning = document.getElementById('instaWarning');
+
     const ua = navigator.userAgent || navigator.vendor || window.opera;
     const isInstagram = ua.indexOf('Instagram') > -1;
 
@@ -147,34 +193,15 @@
       });
     }
 
-    function openAppWithFallback(link) {
-      const now = new Date().getTime();
-      const timeout = 1500;
-
-      const iframe = document.createElement('iframe');
-      iframe.style.display = 'none';
-      iframe.src = link;
-      document.body.appendChild(iframe);
-
-      setTimeout(() => {
-        const hidden = document.hidden || document.webkitHidden;
-        if (!hidden) {
-          alert('어플리케이션을 다운받아 주십시오');
-        }
-        document.body.removeChild(iframe);
-      }, timeout);
-    }
-
     document.querySelectorAll('.bank-btn').forEach(btn => {
       btn.addEventListener('click', async () => {
-        await copyAccount();
+        const copied = await copyAccount();
         const link = btn.getAttribute('data-link');
-        const noCheckLinks = ['kakaobank://', 'supertoss://'];
 
-        if (noCheckLinks.includes(link)) {
+        try {
           location.href = link;
-        } else {
-          openAppWithFallback(link);
+        } catch {
+          alert('어플리케이션을 다운받아 주십시오.');
         }
       });
     });
@@ -183,4 +210,5 @@
   </script>
 
 </body>
+
 </html>
