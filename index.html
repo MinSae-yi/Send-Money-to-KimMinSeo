@@ -135,15 +135,6 @@
     .bank-btn:hover {
       opacity: 0.85;
     }
-
-    .pending {
-      font-size: 0.7rem;
-      color: #777;
-      margin-top: -0.2rem;
-      margin-bottom: 0.3rem;
-      text-align: center;
-      user-select: none;
-    }
   </style>
 </head>
 
@@ -163,21 +154,21 @@
   </section>
 
   <section class="banks-panel">
-    <div class="bank-btn kakao" data-link="kakaobank://">카카오</div>
-    <div class="bank-btn toss" data-link="supertoss://">토스뱅크</div>
-    <div class="bank-btn kookmin" data-link="kb-acp://">국민</div>
-    <div class="bank-btn hana" data-link="hana1qbank://">하나</div>
-    <div class="bank-btn woori" data-link="com.wooricard.wcard://">우리</div>
-    <div class="bank-btn shinhan" data-link="cloudpay://">신한</div>
-    <div class="bank-btn nonghyup" data-link="nhallonepayansimclick://">농협</div>
+    <div class="bank-btn kakao" data-scheme="kakaobank://" data-android="https://play.google.com/store/apps/details?id=com.kakaobank.channel" data-ios="https://apps.apple.com/kr/app/id1156582303">카카오</div>
+    <div class="bank-btn toss" data-scheme="supertoss://" data-android="https://play.google.com/store/apps/details?id=viva.republica.toss" data-ios="https://apps.apple.com/kr/app/id839333328">토스뱅크</div>
+    <div class="bank-btn kookmin" data-scheme="kb-acp://" data-android="https://play.google.com/store/apps/details?id=com.kbstar.kbbank" data-ios="https://apps.apple.com/kr/app/id361508560">국민</div>
+    <div class="bank-btn hana" data-scheme="hana1qbank://" data-android="https://play.google.com/store/apps/details?id=com.hanabank.ebk.channel.android.hananbank" data-ios="https://apps.apple.com/kr/app/id362052830">하나</div>
+    <div class="bank-btn woori" data-scheme="com.wooricard.wcard://" data-android="https://play.google.com/store/apps/details?id=com.wooricard.wcard" data-ios="https://apps.apple.com/kr/app/id400866312">우리</div>
+    <div class="bank-btn shinhan" data-scheme="cloudpay://" data-android="https://play.google.com/store/apps/details?id=com.shcard.smartpay" data-ios="https://apps.apple.com/kr/app/id1109689743">신한</div>
+    <div class="bank-btn nonghyup" data-scheme="nhallonepayansimclick://" data-android="https://play.google.com/store/apps/details?id=nh.smart.nhallonepay" data-ios="https://apps.apple.com/kr/app/id1155481521">농협</div>
   </section>
 
   <script>
     const accountNumber = document.getElementById('accountNumber').innerText;
     const instaWarning = document.getElementById('instaWarning');
-
-    const ua = navigator.userAgent || navigator.vendor || window.opera;
-    const isInstagram = ua.indexOf('Instagram') > -1;
+    const isInstagram = navigator.userAgent.includes('Instagram');
+    const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+    const isAndroid = /Android/i.test(navigator.userAgent);
 
     if (isInstagram) {
       instaWarning.style.display = 'block';
@@ -195,18 +186,26 @@
 
     document.querySelectorAll('.bank-btn').forEach(btn => {
       btn.addEventListener('click', async () => {
-        const copied = await copyAccount();
-        const link = btn.getAttribute('data-link');
+        await copyAccount();
 
-        try {
-          location.href = link;
-        } catch {
-          alert('어플리케이션을 다운받아 주십시오.');
-        }
+        const scheme = btn.getAttribute('data-scheme');
+        const androidUrl = btn.getAttribute('data-android');
+        const iosUrl = btn.getAttribute('data-ios');
+        const fallbackUrl = isIOS ? iosUrl : androidUrl;
+
+        const now = new Date().getTime();
+        const timeout = 1200;
+
+        window.location = scheme;
+
+        setTimeout(() => {
+          const elapsed = new Date().getTime() - now;
+          if (elapsed < timeout + 300) {
+            window.location = fallbackUrl;
+          }
+        }, timeout);
       });
     });
-
-    document.querySelector('.copy-btn').addEventListener('click', copyAccount);
   </script>
 
 </body>
