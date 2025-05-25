@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -16,7 +15,6 @@
       align-items: center;
       gap: 2rem;
     }
-
     #instaWarning {
       display: none;
       background: #fffae6;
@@ -28,7 +26,6 @@
       max-width: 320px;
       text-align: center;
     }
-
     .account-section {
       background: #fff;
       padding: 1.5rem 2rem;
@@ -38,26 +35,22 @@
       width: 320px;
       max-width: 100%;
     }
-
     .account-number {
       font-size: 1.4rem;
       font-weight: bold;
       margin-bottom: 0.6rem;
       user-select: all;
     }
-
     .account-name {
       font-size: 1.2rem;
       margin-bottom: 0.6rem;
       color: #555;
     }
-
     .bank-name {
       font-size: 0.9rem;
       color: #888;
       margin-bottom: 1.2rem;
     }
-
     button.copy-btn {
       background-color: #4caf50;
       border: none;
@@ -70,11 +63,9 @@
       width: 100%;
       margin-bottom: 1rem;
     }
-
     button.copy-btn:hover {
       background-color: #45a049;
     }
-
     .banks-panel {
       display: flex;
       flex-direction: column;
@@ -82,7 +73,6 @@
       width: 320px;
       max-width: 100%;
     }
-
     .bank-btn {
       display: inline-block;
       text-decoration: none;
@@ -100,24 +90,36 @@
       cursor: pointer;
       user-select: none;
     }
-
-    .kakao { background-color: #feda00; color: #3c1e1e; }
-    .toss { background-color: #0077cc; }
-    .kookmin { background-color: #d4af00; color: #000; }
-    .hana { background-color: #b2e2b2; color: #000; }
-    .woori { background-color: #0055aa; }
-    .shinhan { background-color: #003366; }
-    .nonghyup { background-color: #4caf50; }
-    .nhkok { background-color: #2e8b57; }
-
+    .kakao {
+      background-color: #feda00;
+      color: #3c1e1e;
+    }
+    .toss {
+      background-color: #0077cc;
+    }
+    .kookmin {
+      background-color: #d4af00;
+      color: #000;
+    }
+    .hana {
+      background-color: #b2e2b2;
+      color: #000;
+    }
+    .woori {
+      background-color: #0055aa;
+    }
+    .shinhan {
+      background-color: #003366;
+    }
+    .nonghyup {
+      background-color: #4caf50;
+    }
     .bank-btn:hover {
       opacity: 0.85;
     }
   </style>
 </head>
-
 <body>
-
   <div id="instaWarning">
     ⚠️ 인스타그램 내장 브라우저에서는 자동 복사가 제한될 수 있습니다.<br />
     버튼을 누르면 앱이 열리지만, 복사가 안 될 경우 계좌번호 복사를 눌러 주세요.<br />
@@ -138,8 +140,7 @@
     <div class="bank-btn hana" data-scheme="hana1qbank://" data-android="https://play.google.com/store/apps/details?id=com.hanabank.ebk.channel.android.hananbank" data-ios="https://apps.apple.com/kr/app/id362052830">하나</div>
     <div class="bank-btn woori" data-scheme="com.wooricard.wcard://" data-android="https://play.google.com/store/apps/details?id=com.wooricard.wcard" data-ios="https://apps.apple.com/kr/app/id400866312">우리</div>
     <div class="bank-btn shinhan" data-scheme="cloudpay://" data-android="https://play.google.com/store/apps/details?id=com.shcard.smartpay" data-ios="https://apps.apple.com/kr/app/id1109689743">신한</div>
-    <div class="bank-btn nonghyup" data-scheme="nhallonepayansimclick://" data-android="https://play.google.com/store/apps/details?id=nh.smart.nhallonepay" data-ios="https://apps.apple.com/kr/app/id1155481521">농협</div>
-    <div class="bank-btn nhkok" data-scheme="intent://nh.smart.nhcok#Intent;scheme=nhcok;package=nh.smart.nhcok;end" data-android="https://play.google.com/store/apps/details?id=nh.smart.nhcok" data-ios="https://apps.apple.com/kr/app/id1131147442">NH콕뱅크</div>
+    <div class="bank-btn nonghyup" data-scheme="nhcobank://" data-android="https://play.google.com/store/apps/details?id=nh.smart.nhcobank" data-ios="https://apps.apple.com/kr/app/id1171750702">농협</div>
   </section>
 
   <script>
@@ -186,7 +187,5 @@
       });
     });
   </script>
-
 </body>
-
 </html>
