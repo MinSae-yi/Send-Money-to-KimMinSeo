@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -87,11 +88,15 @@
       text-decoration: none;
       padding: 0.3rem 0.1rem;
       border-radius: 6px;
-      font-size: 0.95rem;
+      font-size: 0.85rem;
       font-weight: 600;
       text-align: center;
       width: 100%;
       color: white;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
       cursor: pointer;
       user-select: none;
     }
@@ -132,6 +137,7 @@
     }
   </style>
 </head>
+
 <body>
 
   <div id="instaWarning">
@@ -148,50 +154,48 @@
   </section>
 
   <section class="banks-panel">
-    <div class="bank-btn kakao" onclick="openBankApp('kakaobank://', 'https://play.google.com/store/apps/details?id=com.kakaobank.channel', 'https://apps.apple.com/kr/app/id1156582303')">카카오</div>
-
-    <div class="bank-btn toss" onclick="openBankApp('supertoss://', 'https://play.google.com/store/apps/details?id=viva.republica.toss', 'https://apps.apple.com/kr/app/id839333328')">토스뱅크</div>
-
-    <div class="bank-btn kookmin" onclick="openBankApp('kb-acp://', 'https://play.google.com/store/apps/details?id=com.kbstar.kbbank', 'https://apps.apple.com/kr/app/id361508560')">국민</div>
-
-    <div class="bank-btn hana" onclick="openBankApp('hana1qbank://', 'https://play.google.com/store/apps/details?id=com.hanabank.ebk.channel.android.hananbank', 'https://apps.apple.com/kr/app/id362052830')">하나</div>
-
-    <div class="bank-btn woori" onclick="openBankApp('com.wooricard.wcard://', 'https://play.google.com/store/apps/details?id=com.wooricard.wcard', 'https://apps.apple.com/kr/app/id400866312')">우리</div>
-
-    <div class="bank-btn shinhan" onclick="openBankApp('cloudpay://', 'https://play.google.com/store/apps/details?id=com.shcard.smartpay', 'https://apps.apple.com/kr/app/id1109689743')">신한</div>
-
+    <div class="bank-btn kakao" onclick="openApp('kakaobank://', 'https://play.google.com/store/apps/details?id=com.kakaobank.channel', 'https://apps.apple.com/kr/app/id1156582303')">카카오</div>
+    <div class="bank-btn toss" onclick="openApp('supertoss://', 'https://play.google.com/store/apps/details?id=viva.republica.toss', 'https://apps.apple.com/kr/app/id839333328')">토스뱅크</div>
+    <div class="bank-btn kookmin" onclick="openApp('kb-acp://', 'https://play.google.com/store/apps/details?id=com.kbstar.kbbank', 'https://apps.apple.com/kr/app/id361508560')">국민</div>
+    <div class="bank-btn hana" onclick="openApp('hana1qbank://', 'https://play.google.com/store/apps/details?id=com.hanabank.ebk.channel.android.hananbank', 'https://apps.apple.com/kr/app/id362052830')">하나</div>
+    <div class="bank-btn woori" onclick="openApp('com.wooricard.wcard://', 'https://play.google.com/store/apps/details?id=com.wooricard.wcard', 'https://apps.apple.com/kr/app/id400866312')">우리</div>
+    <div class="bank-btn shinhan" onclick="openApp('cloudpay://', 'https://play.google.com/store/apps/details?id=com.shcard.smartpay', 'https://apps.apple.com/kr/app/id1109689743')">신한</div>
     <div class="bank-btn nonghyup" onclick="openNHKokBank()">농협</div>
   </section>
 
   <script>
     const accountNumber = document.getElementById('accountNumber').innerText;
+    const instaWarning = document.getElementById('instaWarning');
     const isInstagram = navigator.userAgent.includes('Instagram');
     const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
     const isAndroid = /Android/i.test(navigator.userAgent);
 
     if (isInstagram) {
-      document.getElementById('instaWarning').style.display = 'block';
+      instaWarning.style.display = 'block';
     }
 
     function copyAccount() {
       return navigator.clipboard.writeText(accountNumber).then(() => {
         alert('계좌번호가 복사되었습니다!');
+        return true;
       }).catch(() => {
         alert('복사에 실패했습니다. 수동으로 복사해주세요.');
+        return false;
       });
     }
 
-    function openBankApp(scheme, androidUrl, iosUrl) {
+    function openApp(scheme, androidUrl, iosUrl) {
       copyAccount();
-      const now = new Date().getTime();
+      const fallbackUrl = isIOS ? iosUrl : androidUrl;
+      const now = Date.now();
       const timeout = 1200;
 
       window.location = scheme;
 
       setTimeout(() => {
-        const elapsed = new Date().getTime() - now;
+        const elapsed = Date.now() - now;
         if (elapsed < timeout + 300) {
-          window.location = isIOS ? iosUrl : androidUrl;
+          window.location = fallbackUrl;
         }
       }, timeout);
     }
@@ -204,9 +208,6 @@
 
       if (isAndroid) {
         window.location.href = 'intent://nh.smart.nhcok#Intent;scheme=nhcok;package=nh.smart.nhcok;end';
-        setTimeout(function () {
-          window.location.href = 'https://play.google.com/store/apps/details?id=nh.smart.nhcok';
-        }, 2000);
       } else if (isIOS) {
         window.location.href = 'https://apps.apple.com/kr/app/id1131147442';
       } else {
@@ -216,4 +217,5 @@
   </script>
 
 </body>
+
 </html>
