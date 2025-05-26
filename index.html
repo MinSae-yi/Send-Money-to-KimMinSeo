@@ -78,85 +78,64 @@
     .banks-panel {
       display: flex;
       flex-direction: column;
-      gap: 0.4rem;
+      gap: 0.6rem;
       width: 320px;
       max-width: 100%;
     }
 
-    .bank-btn {
-      display: inline-block;
-      text-decoration: none;
-      padding: 0.3rem 0.1rem;
+    button.bank-btn {
+      background-color: #0077cc;
+      border: none;
       border-radius: 6px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      text-align: center;
-      width: 100%;
       color: white;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+      padding: 0.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+      transition: background-color 0.3s;
+      user-select: none;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      cursor: pointer;
-      user-select: none;
+      width: 100%;
+      text-align: center;
     }
 
-    .kakao {
+    button.bank-btn:hover {
+      background-color: #005fa3;
+    }
+
+    /* 은행별 색상 */
+    button.kakao {
       background-color: #feda00;
       color: #3c1e1e;
     }
 
-    .toss {
+    button.toss {
       background-color: #0077cc;
     }
 
-    .kookmin {
+    button.kookmin {
       background-color: #d4af00;
       color: #000;
     }
 
-    .hana {
+    button.hana {
       background-color: #b2e2b2;
       color: #000;
     }
 
-    .woori {
+    button.woori {
       background-color: #0055aa;
     }
 
-    .shinhan {
+    button.shinhan {
       background-color: #003366;
     }
 
-    .nonghyup {
+    button.nonghyup {
       background-color: #4caf50;
-    }
-
-    .bank-btn:hover {
-      opacity: 0.85;
-    }
-
-    #installNH {
-      display: none;
-      background: #fff3cd;
-      color: #856404;
-      padding: 1rem;
-      border-radius: 6px;
-      margin-top: 1rem;
-      text-align: center;
-      width: 320px;
-      max-width: 100%;
-      box-sizing: border-box;
-    }
-
-    #installNH button {
-      padding: 8px 12px;
-      margin-top: 8px;
-      border: none;
-      background: #007bff;
-      color: #fff;
-      border-radius: 4px;
-      cursor: pointer;
     }
   </style>
 </head>
@@ -177,19 +156,14 @@
   </section>
 
   <section class="banks-panel">
-    <div class="bank-btn kakao" onclick="openApp('kakaobank://', 'https://play.google.com/store/apps/details?id=com.kakaobank.channel', 'https://apps.apple.com/app/id1156582303')">카카오</div>
-    <div class="bank-btn toss" onclick="openApp('supertoss://', 'https://play.google.com/store/apps/details?id=viva.republica.toss', 'https://apps.apple.com/app/id839333328')">토스뱅크</div>
-    <div class="bank-btn kookmin" onclick="openApp('intent://open#Intent;scheme=kb-acp;package=com.kbstar.kbbank;end', 'https://play.google.com/store/apps/details?id=com.kbstar.kbbank', 'https://apps.apple.com/app/id361508560')">국민</div>
-    <div class="bank-btn hana" onclick="openApp('hana1qbank://', 'https://play.google.com/store/apps/details?id=com.hanabank.ebk.channel.android.hananbank', 'https://apps.apple.com/app/id362052830')">하나</div>
-    <div class="bank-btn woori" onclick="openApp('com.wooricard.wcard://', 'https://play.google.com/store/apps/details?id=com.wooricard.wcard', 'https://apps.apple.com/app/id400866312')">우리</div>
-    <div class="bank-btn shinhan" onclick="openApp('cloudpay://', 'https://play.google.com/store/apps/details?id=com.shcard.smartpay', 'https://apps.apple.com/app/id1109689743')">신한</div>
-    <div class="bank-btn nonghyup" onclick="openNHKokBank()">농협</div>
+    <button class="bank-btn kakao" onclick="openApp('kakaobank://', 'https://play.google.com/store/apps/details?id=com.kakaobank.channel', 'https://apps.apple.com/kr/app/id1156582303')">카카오</button>
+    <button class="bank-btn toss" onclick="openApp('supertoss://', 'https://play.google.com/store/apps/details?id=viva.republica.toss', 'https://apps.apple.com/kr/app/id839333328')">토스뱅크</button>
+    <button class="bank-btn kookmin" onclick="openApp('intent://open#Intent;scheme=kb-acp;package=com.kbstar.kbbank;end', 'https://play.google.com/store/apps/details?id=com.kbstar.kbbank', 'https://apps.apple.com/kr/app/id361508560')">국민</button>
+    <button class="bank-btn hana" onclick="openApp('hana1qbank://', 'https://play.google.com/store/apps/details?id=com.hanabank.ebk.channel.android.hananbank', 'https://apps.apple.com/kr/app/id362052830')">하나</button>
+    <button class="bank-btn woori" onclick="openApp('com.wooricard.wcard://', 'https://play.google.com/store/apps/details?id=com.wooricard.wcard', 'https://apps.apple.com/kr/app/id400866312')">우리</button>
+    <button class="bank-btn shinhan" onclick="openApp('cloudpay://', 'https://play.google.com/store/apps/details?id=com.shcard.smartpay', 'https://apps.apple.com/kr/app/id1109689743')">신한</button>
+    <button class="bank-btn nonghyup" onclick="openNHKokBank()">농협</button>
   </section>
-
-  <div id="installNH">
-    농협 앱이 설치되어 있지 않은 것 같아요.<br />
-    <button onclick="goToStore('https://apps.apple.com/app/id1131147442', 'https://play.google.com/store/apps/details?id=nh.smart.nhcok')">농협 앱 설치하러 가기</button>
-  </div>
 
   <script>
     const accountNumber = document.getElementById('accountNumber').innerText;
@@ -216,7 +190,7 @@
       copyAccount();
       const fallbackUrl = isIOS ? iosUrl : androidUrl;
       const now = Date.now();
-      const timeout = 2000;
+      const timeout = 1200;
 
       window.location = scheme;
 
@@ -230,33 +204,17 @@
 
     function openNHKokBank() {
       copyAccount();
-
-      const installNotice = document.getElementById('installNH');
-      installNotice.style.display = 'none';
-
-      const now = Date.now();
-      const timeout = 2000;
+      var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+      var isAndroid = /android/i.test(userAgent);
+      var isIOS = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
 
       if (isAndroid) {
         window.location.href = 'intent://nh.smart.nhcok#Intent;scheme=nhcok;package=nh.smart.nhcok;end';
       } else if (isIOS) {
-        window.location.href = 'nhcok://';
+        window.location.href = 'https://apps.apple.com/kr/app/id1131147442';
       } else {
         alert('지원되지 않는 플랫폼입니다.');
-        return;
       }
-
-      setTimeout(() => {
-        const elapsed = Date.now() - now;
-        if (elapsed < timeout + 300) {
-          // 앱 실행 안 된 것 같으면 설치 안내 메시지 띄우기
-          installNotice.style.display = 'block';
-        }
-      }, timeout);
-    }
-
-    function goToStore(iosUrl, androidUrl) {
-      window.location.href = isIOS ? iosUrl : androidUrl;
     }
   </script>
 
