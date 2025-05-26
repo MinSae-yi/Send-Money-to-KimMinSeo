@@ -58,7 +58,8 @@
       margin-bottom: 1.2rem;
     }
 
-    button.copy-btn {
+    button.copy-btn,
+    button.query-btn {
       background-color: #4caf50;
       border: none;
       color: white;
@@ -68,10 +69,11 @@
       font-size: 0.85rem;
       transition: background-color 0.3s;
       width: 100%;
-      margin-bottom: 1rem;
+      margin-bottom: 0.5rem;
     }
 
-    button.copy-btn:hover {
+    button.copy-btn:hover,
+    button.query-btn:hover {
       background-color: #45a049;
     }
 
@@ -151,6 +153,7 @@
     <div class="account-name">김민서</div>
     <div class="bank-name">(국민)</div>
     <button class="copy-btn" onclick="copyAccount()">계좌번호 복사</button>
+    <button class="query-btn" onclick="callAccountListAPI()">전체 계좌 조회</button>
   </section>
 
   <section class="banks-panel">
@@ -202,9 +205,9 @@
 
     function openNHKokBank() {
       copyAccount();
-      var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-      var isAndroid = /android/i.test(userAgent);
-      var isIOS = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
+      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+      const isAndroid = /android/i.test(userAgent);
+      const isIOS = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
 
       if (isAndroid) {
         window.location.href = 'intent://nh.smart.nhcok#Intent;scheme=nhcok;package=nh.smart.nhcok;end';
@@ -213,6 +216,29 @@
       } else {
         alert('지원되지 않는 플랫폼입니다.');
       }
+    }
+
+    function callAccountListAPI() {
+      fetch('/v1/corpbank/apis/wholAcnLstInquery', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer YOUR_ACCESS_TOKEN' // 실제 토큰으로 교체 필요
+        },
+        body: JSON.stringify({
+          organizationCode: 'ORG12345',
+          userId: 'USER67890'
+        })
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log('조회 결과:', data);
+          alert('전체 계좌 목록 조회 완료 (콘솔 확인)');
+        })
+        .catch(error => {
+          console.error('조회 실패:', error);
+          alert('계좌 목록 조회 중 오류 발생');
+        });
     }
   </script>
 
