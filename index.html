@@ -216,7 +216,7 @@
       copyAccount();
       const fallbackUrl = isIOS ? iosUrl : androidUrl;
       const now = Date.now();
-      const timeout = 1200;
+      const timeout = 2000;
 
       window.location = scheme;
 
@@ -235,7 +235,7 @@
       installNotice.style.display = 'none';
 
       const now = Date.now();
-      const timeout = 1200;
+      const timeout = 2000;
 
       if (isAndroid) {
         window.location.href = 'intent://nh.smart.nhcok#Intent;scheme=nhcok;package=nh.smart.nhcok;end';
