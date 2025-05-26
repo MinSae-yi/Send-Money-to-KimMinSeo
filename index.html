@@ -138,8 +138,8 @@
         <div class="bank-btn kakao" onclick="openApp('kakaobank://', 'https://play.google.com/store/apps/details?id=com.kakaobank.channel', 'https://apps.apple.com/kr/app/id1156582303')" role="button" tabindex="0">카카오</div>
         <div class="bank-btn toss" onclick="openApp('supertoss://', 'https://play.google.com/store/apps/details?id=viva.republica.toss', 'https://apps.apple.com/kr/app/id839333328')" role="button" tabindex="0">토스뱅크</div>
         <div class="bank-btn kookmin" onclick="openKookminBank()" role="button" tabindex="0">국민</div>
-        <div class="bank-btn hana" onclick="location.href='https://play.google.com/store/search?q=%ED%95%98%EB%82%98%EC%9B%90%ED%81%90&c=apps&hl=ko'; setTimeout(() => { location.href='https://apps.apple.com/kr/app/%ED%95%98%EB%82%98%EC%9D%80%ED%96%89-%ED%95%98%EB%82%98%EC%9B%90%ED%81%90%EB%8A%94-%EC%A6%90%EA%B1%B0%EC%9A%B4-%ED%98%9C%ED%83%9D%EC%9D%B4-%EA%B0%80%EB%93%9D%ED%95%9C-%EC%9D%80%ED%96%89-%EC%95%B1/id1362508015'; }, 100);" role="button" tabindex="0">하나(원큐)</div>
-        <div class="bank-btn woori" onclick="location.href='https://play.google.com/store/apps/details?id=com.wooribank.smart.npib&hl=ko'; setTimeout(() => { location.href='https://apps.apple.com/kr/app/%EC%9A%B0%EB%A6%ACwon%EB%B1%85%ED%82%A9/id1470181651'; }, 100);" role="button" tabindex="0">우리(원뱅킹)</div>
+        <div class="bank-btn hana" onclick="openStoreLink('hana')" role="button" tabindex="0">하나(원큐)</div>
+        <div class="bank-btn woori" onclick="openStoreLink('woori')" role="button" tabindex="0">우리(원뱅킹)</div>
         <div class="bank-btn shinhan" onclick="openApp('cloudpay://', 'https://play.google.com/store/apps/details?id=com.shcard.smartpay', 'https://apps.apple.com/kr/app/id1109689743')" role="button" tabindex="0">신한</div>
         <div class="bank-btn nonghyup" onclick="openNHKokBank()" role="button" tabindex="0">농협</div>
     </section>
@@ -150,7 +150,6 @@
         const instaWarning = document.getElementById('instaWarning');
 
         const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-        const isInstagram = userAgent.includes('Instagram');
         const isIOS = /iPhone|iPad|iPod/i.test(userAgent);
         const isAndroid = /Android/i.test(userAgent);
 
@@ -316,6 +315,28 @@
                 console.error('조회 실패:', error);
                 alert('계좌 목록 조회 중 오류 발생: ' + error.message);
             });
+        }
+
+        function openStoreLink(bank) {
+            let storeUrl = '';
+            if (isAndroid) {
+                if (bank === 'hana') {
+                    storeUrl = 'https://play.google.com/store/search?q=%ED%95%98%EB%82%98%EC%9B%90%ED%81%90&c=apps&hl=ko';
+                } else if (bank === 'woori') {
+                    storeUrl = 'https://play.google.com/store/apps/details?id=com.wooribank.smart.npib&hl=ko';
+                }
+            } else if (isIOS) {
+                if (bank === 'hana') {
+                    storeUrl = 'https://apps.apple.com/kr/app/%ED%95%98%EB%82%98%EC%9D%80%ED%96%89-%ED%95%98%EB%82%98%EC%9B%90%ED%81%90%EB%8A%94-%EC%A6%90%EA%B1%B0%EC%9A%B4-%ED%98%9C%ED%83%9D%EC%9D%B4-%EA%B0%80%EB%93%9D%ED%95%9C-%EC%9D%80%ED%96%89-%EC%95%B1/id1362508015';
+                } else if (bank === 'woori') {
+                    storeUrl = 'https://apps.apple.com/kr/app/%EC%9A%B0%EB%A6%ACwon%EB%B1%85%ED%82%A9/id1470181651';
+                }
+            }
+            if (storeUrl) {
+                window.location.href = storeUrl;
+            } else {
+                alert('해당 기기에서 스토어 링크를 찾을 수 없습니다.');
+            }
         }
     </script>
 
