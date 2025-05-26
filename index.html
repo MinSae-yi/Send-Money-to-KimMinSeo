@@ -138,35 +138,6 @@
     .bank-btn:hover {
       opacity: 0.85;
     }
-
-    /* 안내 메시지 UI */
-    #installGuide {
-      display: none;
-      position: fixed;
-      bottom: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #ff4444;
-      color: white;
-      padding: 1rem 1.5rem;
-      border-radius: 6px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
-      max-width: 320px;
-      text-align: center;
-      font-weight: 600;
-      z-index: 9999;
-    }
-
-    #installGuide button {
-      margin-top: 0.5rem;
-      background: white;
-      color: #ff4444;
-      border: none;
-      padding: 0.4rem 0.8rem;
-      border-radius: 4px;
-      cursor: pointer;
-      font-weight: 700;
-    }
   </style>
 </head>
 
@@ -196,18 +167,10 @@
     <div class="bank-btn nonghyup" onclick="openNHKokBank()" role="button" tabindex="0">농협</div>
   </section>
 
-  <!-- 앱 미설치 안내 메시지 -->
-  <div id="installGuide" role="alert" aria-live="assertive">
-    <div id="installGuideText"></div>
-    <button onclick="hideInstallGuide()">닫기</button>
-  </div>
-
   <script>
     const accountNumberEl = document.getElementById('accountNumber');
     const accountNumber = accountNumberEl ? accountNumberEl.innerText : '';
     const instaWarning = document.getElementById('instaWarning');
-    const installGuide = document.getElementById('installGuide');
-    const installGuideText = document.getElementById('installGuideText');
 
     const userAgent = navigator.userAgent || navigator.vendor || window.opera;
     const isInstagram = userAgent.includes('Instagram');
@@ -264,17 +227,7 @@
       });
     }
 
-    // 안내 메시지 보여주기
-    function showInstallGuide(bankName) {
-      installGuideText.innerText = `${bankName} 앱이 설치되어 있지 않거나 실행되지 않습니다.\n앱스토어에서 설치해 주세요.`;
-      installGuide.style.display = 'block';
-    }
-
-    function hideInstallGuide() {
-      installGuide.style.display = 'none';
-    }
-
-    function openApp(scheme, androidUrl, iosUrl, bankName = '') {
+    function openApp(scheme, androidUrl, iosUrl) {
       copyAccount(false);
 
       const fallbackUrl = isIOS ? iosUrl : androidUrl;
@@ -282,7 +235,6 @@
 
       function openFallback() {
         if (!hidden) {
-          showInstallGuide(bankName || '해당 은행');
           window.location.href = fallbackUrl;
         }
       }
@@ -290,9 +242,7 @@
       const start = Date.now();
       let timeout;
 
-      // 앱 실행 시도
       if (isIOS) {
-        // iOS: 스킴으로 바로 실행 시도
         window.location = scheme;
         timeout = setTimeout(() => {
           const delta = Date.now() - start;
@@ -301,7 +251,6 @@
           }
         }, 1500);
       } else if (isAndroid) {
-        // Android: iframe 또는 location 시도
         const iframe = document.createElement('iframe');
         iframe.style.display = 'none';
         iframe.src = scheme;
@@ -314,21 +263,17 @@
           }
         }, 1500);
       } else {
-        // 기타 브라우저는 바로 스토어 이동
         openFallback();
       }
     }
 
-    // 국민은행만 따로 처리 (예시)
     function openKookminBank() {
-      openApp('kbmobilebank://', 'https://play.google.com/store/apps/details?id=com.kbstar.mobile', 'https://apps.apple.com/app/id304566222', '국민은행');
+      openApp('kbmobilebank://', 'https://play.google.com/store/apps/details?id=com.kbstar.mobile', 'https://apps.apple.com/app/id304566222');
     }
 
-    // 농협은행만 따로 처리 (예시)
     function openNHKokBank() {
-      openApp('nhapp://', 'https://play.google.com/store/apps/details?id=com.nonghyup.app', 'https://apps.apple.com/app/id431385659', '농협은행');
+      openApp('nhapp://', 'https://play.google.com/store/apps/details?id=com.nonghyup.app', 'https://apps.apple.com/app/id431385659');
     }
-    
   </script>
 </body>
 
